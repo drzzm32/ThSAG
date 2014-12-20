@@ -1,0 +1,29 @@
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\bin\Debug\ThAVG.exe
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\bin\Debug\ThAVG.pdb
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\bin\Debug\ThAVG.xml
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\obj\Debug\ThAVG.Resources.resources
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\obj\Debug\ThAVG.vbproj.GenerateResource.Cache
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\obj\Debug\ThAVG.exe
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\obj\Debug\ThAVG.xml
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\obj\Debug\ThAVG.pdb
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\obj\Debug\ThAVG.Config.resources
+C:\Users\D.zzm\AppData\Local\Temporary Projects\ThAVG\obj\Debug\ThAVG.Main.resources
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\obj\Debug\ThAVG.vbproj.GenerateResource.Cache
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\DxLibDotNet.dll
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\obj\Debug\ThAVG.vbprojResolveAssemblyReference.cache
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\DxLib.dll
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\DxLib_x64.dll
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\Resources\1.png
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\Resources\2.png
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\Resources\bit01.jpg
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\ThSAG.exe.config
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\ThSAG.exe
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\ThSAG.pdb
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\ThSAG.xml
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\obj\Debug\ThSAG.Main.resources
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\obj\Debug\ThSAG.Resources.resources
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\obj\Debug\ThSAG.exe
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\obj\Debug\ThSAG.xml
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\obj\Debug\ThSAG.pdb
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\TestScript1.txt
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThAVG\ThAVG\bin\Debug\TestScript2.txt

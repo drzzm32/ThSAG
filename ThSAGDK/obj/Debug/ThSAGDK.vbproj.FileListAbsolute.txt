@@ -1,0 +1,12 @@
+d:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAGDK\bin\Debug\ThSAGDK.exe.config
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\bin\Debug\ThSAGDK.exe.config
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\bin\Debug\ThSAGDK.exe
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\bin\Debug\ThSAGDK.pdb
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\bin\Debug\ThSAGDK.xml
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\obj\Debug\ThSAGDK.Main.resources
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\obj\Debug\ThSAGDK.Resources.resources
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\obj\Debug\ThSAGDK.vbproj.GenerateResource.Cache
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\obj\Debug\ThSAGDK.exe
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\obj\Debug\ThSAGDK.xml
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\obj\Debug\ThSAGDK.pdb
+D:\Users\D.zzm\Documents\Visual Studio 2013\Projects\ThSAG\ThSAGDK\obj\Debug\ThSAGDK.vbprojResolveAssemblyReference.cache
