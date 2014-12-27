@@ -4,7 +4,7 @@ Imports ThSAG.WDJ_E_Lite.Base.DrawingGroup
 Imports ThSAG.WDJ_E_Lite.Base.ControlGroup
 
 Public Class Main
-    Dim AppName As String = "ThSAG VB .NET & DirectX Edition ~ STG part"
+    Dim AppName As String = "ThSAG VB .NET & DirectX Edition ~ AVG Part"
     Dim IsSTGEnabled As Boolean = True
     Dim IsReleaseMode As Boolean = False
 
@@ -113,6 +113,10 @@ Public Class Main
             Next j
         Next i
 
+        StringLoad()
+        ProBar.Value = 100
+        Me.Refresh()
+
         Select Case TrackBar.Value
             Case 0
                 DifficultyValue = 10
@@ -138,8 +142,6 @@ Public Class Main
                 DifficultyValue = 1
         End Select
 
-        ProBar.Value = 100
-        Me.Refresh()
         Me.Hide()
 
         Timer.Start()
@@ -154,7 +156,7 @@ Public Class Main
         DxLibDLL.DX.SetCameraPositionAndTarget_UpVecY(DxLibDLL.DX.VGet(0, 10, -20), DxLibDLL.DX.VGet(0, 10, 0))
         CameraValue(0) = 0 : CameraValue(1) = 10 : CameraValue(2) = -20 : CameraValue(3) = 0 : CameraValue(4) = 10 : CameraValue(5) = 0
 
-        Audio.Play("D:\Users\D.zzm\Desktop\BGM.wav", AudioPlayMode.BackgroundLoop)
+        'Audio.Play("D:\Users\D.zzm\Desktop\BGM.wav", AudioPlayMode.BackgroundLoop)
 
         Do
             'DxLibDLL.DX.MV1DrawModel(ModelHandle)
@@ -205,7 +207,6 @@ ExitFlag:
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         End
     End Sub
-
     Private Sub UpExitButton_Click(sender As Object, e As EventArgs) Handles UpExitButton.Click
         End
     End Sub
@@ -432,9 +433,8 @@ Head:
             End If
         Next i
 
-        ModelHandle = DxLibDLL.DX.MV1LoadModel("FrandreScarletVer1.0\FrandreScarletVer1.0.pmx")
+        'ModelHandle = DxLibDLL.DX.MV1LoadModel("FrandreScarletVer1.0\FrandreScarletVer1.0.pmx")
         'ModelHandle = DxLibDLL.DX.MV1LoadModel("dat/Lat幃儈僋/Lat幃儈僋Ver2.3_Normal.pmd")
-
 
         If _
             DxLibVB.LoadTexture(True, "\Resources\2.png", ImageArray(IMAGE_BULLET, 0)) And _
@@ -445,6 +445,50 @@ Head:
             Return False
         End If
     End Function
+    Private Sub StringLoad()
+        For i = 0 To Scenes.GetUpperBound(0) Step 1
+            If Not Scenes(i) Is Nothing Then
+                Select Case Scenes(i).WordType
+                    Case AVG.WordType.Comment
+                        For k = 0 To Scenes(i).Choices.GetUpperBound(0) Step 1
+                            If Not Scenes(i).Choices(k).Context = Nothing Then
+                                Scenes(i).Choices(k).Handle = DxLibVB.LoadString(Scenes(i).Choices(k).Context, Brushes.White, 80)
+                            End If
+                        Next k
+                    Case AVG.WordType.GameRun
+                        For k = 0 To Scenes(i).Choices.GetUpperBound(0) Step 1
+                            If Not Scenes(i).Choices(k).Context = Nothing Then
+                                Scenes(i).Choices(k).Handle = DxLibVB.LoadString(Scenes(i).Choices(k).Context, Brushes.Cyan, 100)
+                            End If
+                        Next k
+                    Case AVG.WordType.Loading
+                        For k = 0 To Scenes(i).Choices.GetUpperBound(0) Step 1
+                            If Not Scenes(i).Choices(k).Context = Nothing Then
+                                Scenes(i).Choices(k).Handle = DxLibVB.LoadString(Scenes(i).Choices(k).Context, Brushes.White, 80)
+                            End If
+                        Next k
+                    Case AVG.WordType.Saving
+                        For k = 0 To Scenes(i).Choices.GetUpperBound(0) Step 1
+                            If Not Scenes(i).Choices(k).Context = Nothing Then
+                                Scenes(i).Choices(k).Handle = DxLibVB.LoadString(Scenes(i).Choices(k).Context, Brushes.White, 80)
+                            End If
+                        Next k
+                    Case AVG.WordType.Script
+                        For k = 0 To Scenes(i).Choices.GetUpperBound(0) Step 1
+                            If Not Scenes(i).Choices(k).Context = Nothing Then
+                                Scenes(i).Choices(k).Handle = DxLibVB.LoadString(Scenes(i).Choices(k).Context, Brushes.White, 80)
+                            End If
+                        Next k
+                    Case AVG.WordType.Title
+                        For k = 0 To Scenes(i).Choices.GetUpperBound(0) Step 1
+                            If Not Scenes(i).Choices(k).Context = Nothing Then
+                                Scenes(i).Choices(k).Handle = DxLibVB.LoadString(Scenes(i).Choices(k).Context, Brushes.White, 80)
+                            End If
+                        Next k
+                End Select       
+            End If
+        Next i
+    End Sub
     Private Sub MainCircle()
         DxLibDLL.DX.ScreenFlip()
         DxLibDLL.DX.ClearDrawScreen()
@@ -1212,43 +1256,43 @@ Head:
             End If
         End If
 
-        If GetKey(Keys.W) Then
-            CameraValue(0) = CameraValue(0) + 1
-        End If
-        If GetKey(Keys.S) Then
-            CameraValue(0) = CameraValue(0) - 1
-        End If
-        If GetKey(Keys.A) Then
-            CameraValue(1) = CameraValue(1) + 1
-        End If
-        If GetKey(Keys.D) Then
-            CameraValue(1) = CameraValue(1) - 1
-        End If
-        If GetKey(Keys.Q) Then
-            CameraValue(2) = CameraValue(2) + 1
-        End If
-        If GetKey(Keys.E) Then
-            CameraValue(2) = CameraValue(2) - 1
-        End If
+        'If GetKey(Keys.W) Then
+        '    CameraValue(0) = CameraValue(0) + 1
+        'End If
+        'If GetKey(Keys.S) Then
+        '    CameraValue(0) = CameraValue(0) - 1
+        'End If
+        'If GetKey(Keys.A) Then
+        '    CameraValue(1) = CameraValue(1) + 1
+        'End If
+        'If GetKey(Keys.D) Then
+        '    CameraValue(1) = CameraValue(1) - 1
+        'End If
+        'If GetKey(Keys.Q) Then
+        '    CameraValue(2) = CameraValue(2) + 1
+        'End If
+        'If GetKey(Keys.E) Then
+        '    CameraValue(2) = CameraValue(2) - 1
+        'End If
 
-        If GetKey(Keys.I) Then
-            CameraValue(3) = CameraValue(3) + 1
-        End If
-        If GetKey(Keys.K) Then
-            CameraValue(3) = CameraValue(3) - 1
-        End If
-        If GetKey(Keys.J) Then
-            CameraValue(4) = CameraValue(4) + 1
-        End If
-        If GetKey(Keys.L) Then
-            CameraValue(4) = CameraValue(4) - 1
-        End If
-        If GetKey(Keys.U) Then
-            CameraValue(5) = CameraValue(5) + 1
-        End If
-        If GetKey(Keys.O) Then
-            CameraValue(5) = CameraValue(5) - 1
-        End If
+        'If GetKey(Keys.I) Then
+        '    CameraValue(3) = CameraValue(3) + 1
+        'End If
+        'If GetKey(Keys.K) Then
+        '    CameraValue(3) = CameraValue(3) - 1
+        'End If
+        'If GetKey(Keys.J) Then
+        '    CameraValue(4) = CameraValue(4) + 1
+        'End If
+        'If GetKey(Keys.L) Then
+        '    CameraValue(4) = CameraValue(4) - 1
+        'End If
+        'If GetKey(Keys.U) Then
+        '    CameraValue(5) = CameraValue(5) + 1
+        'End If
+        'If GetKey(Keys.O) Then
+        '    CameraValue(5) = CameraValue(5) - 1
+        'End If
 
     End Sub
 

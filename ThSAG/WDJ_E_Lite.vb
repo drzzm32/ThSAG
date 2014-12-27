@@ -1,4 +1,7 @@
-﻿Public Class WDJ_E_Lite
+﻿Imports System.Drawing.Font
+Imports System.Drawing.FontConverter
+Imports System.Drawing.FontFamily
+Public Class WDJ_E_Lite
     Public Declare Function GetKeyState Lib "user32.dll" (ByVal KeyCode As Integer) As Short
     Public Const JUDGE_MISS As Integer = 0
     Public Const JUDGE_GRAZE As Integer = 1
@@ -86,7 +89,22 @@ Jump:
                         Return True
                     End If
                 End Function
-
+                Public Shared Function LoadString(ByRef Context As String, ByRef Brush As System.Drawing.Brush, ByVal Size As Integer, _
+                                                  Optional ByVal Width As Integer = 1920, Optional ByVal Height As Integer = 1080) As Integer
+                    Dim Image As System.Drawing.Bitmap = New Bitmap(Width, Height)
+                    Dim GDI As System.Drawing.Graphics = Graphics.FromImage(Image)
+                    Dim FontFamily As System.Drawing.FontFamily = New FontFamily("微软雅黑")
+                    Dim Font As System.Drawing.Font = New Font(FontFamily, Size, FontStyle.Regular, GraphicsUnit.Pixel)
+                    GDI.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
+                    GDI.InterpolationMode = Drawing2D.InterpolationMode.High
+                    GDI.DrawString(Context, Font, Brush, 0, 0)
+                    Image.Save("String.dat", Imaging.ImageFormat.Png)
+                    GDI.Dispose() : Image.Dispose() : Font.Dispose() : FontFamily.Dispose()
+                    Return DxLibDLL.DX.LoadGraph("String.dat")
+                End Function
+                Public Shared Sub DrawString(x As Integer, ByVal y As Integer, ByRef Handle As Integer)
+                    DxLibDLL.DX.DrawGraph(x, y, Handle, 1)
+                End Sub
                 Public Shared Sub DrawPic(ByVal Image As Images, ByVal x As Single, ByVal y As Single)
                     DxLibDLL.DX.DrawGraphF(x - (Image.Width / 2), y - (Image.Height / 2), Image.Handle, 1)
                     'DxLibDLL.DX.DrawGraphF(x, y, Image.Handle, 1)
@@ -210,6 +228,7 @@ Jump:
             Public IMG As Image
         End Structure
         Public Structure Selection
+            Public Handle As Integer
             Public Context As String
             Public JumpSceneIndex As Integer
         End Structure
@@ -228,7 +247,9 @@ Jump:
             Public BGM As String
             Public WordType As WordType
             Public Choices() As Selection
+            Public IsBuilt As Boolean
             Public Sub New()
+                IsBuilt = False
                 SceneIndex = -1
                 BG.Path = ""
                 BG.Index = -1
@@ -397,48 +418,52 @@ EndFlag:
                 Select Case Scene.WordType
                     Case WordType.Comment
                         For i = 0 To Scene.Choices.GetUpperBound(0) Step 1
-                            If Not Scene.Choices(i).Context = Nothing Then
-                                DxLibDLL.DX.DrawString(100, 900 + i * 20, Scene.Choices(i).Context, 16777215)
-                                DxLibDLL.DX.DrawString(100, 900 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535)
+                            If Not Scene.Choices(i).Handle = Nothing Then
+                                'DxLibDLL.DX.DrawString(100, 900 + i * 20, Scene.Choices(i).Handle, 16777215)
+                                Base.DrawingGroup.DxLibVB.DrawString(100, 600 + i * 100, Scene.Choices(i).Handle)
+                                'DxLibDLL.DX.DrawString(100, 900 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535)
+                                Base.DrawingGroup.DxLibVB.DrawPic(ImageArray(IMAGE_BULLET, 0), 100, 650 + AVGControl * 100)
                             End If
                         Next i
                     Case WordType.GameRun
                         For i = 0 To Scene.Choices.GetUpperBound(0) Step 1
-                            If Not Scene.Choices(i).Context = Nothing Then
-                                DxLibDLL.DX.DrawString(100, 400 + i * 20, Scene.Choices(i).Context, 16777215)
+                            If Not Scene.Choices(i).Handle = Nothing Then
+                                'DxLibDLL.DX.DrawString(100, 400 + i * 20, Scene.Choices(i).Handle, 16777215)
+                                Base.DrawingGroup.DxLibVB.DrawString(100, 400 + i * 200, Scene.Choices(i).Handle)
                             End If
                         Next i
                     Case WordType.Loading
                         For i = 0 To Scene.Choices.GetUpperBound(0) Step 1
-                            If Not Scene.Choices(i).Context = Nothing Then
-                                DxLibDLL.DX.DrawString(100, 100 + i * 20, Scene.Choices(i).Context, 16777215)
-                                DxLibDLL.DX.DrawString(100, 100 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535)
+                            If Not Scene.Choices(i).Handle = Nothing Then
+                                'DxLibDLL.DX.DrawString(100, 100 + i * 20, Scene.Choices(i).Handle, 16777215)
+                                Base.DrawingGroup.DxLibVB.DrawString(100, 100 + i * 100, Scene.Choices(i).Handle)
+                                'DxLibDLL.DX.DrawString(100, 100 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535)
+                                Base.DrawingGroup.DxLibVB.DrawPic(ImageArray(IMAGE_BULLET, 0), 100, 150 + AVGControl * 100)
                             End If
                         Next i
                     Case WordType.Saving
                         For i = 0 To Scene.Choices.GetUpperBound(0) Step 1
-                            If Not Scene.Choices(i).Context = Nothing Then
-                                DxLibDLL.DX.DrawString(100, 100 + i * 20, Scene.Choices(i).Context, 16777215)
-                                DxLibDLL.DX.DrawString(100, 100 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535)
+                            If Not Scene.Choices(i).Handle = Nothing Then
+                                'DxLibDLL.DX.DrawString(100, 100 + i * 20, Scene.Choices(i).Handle, 16777215)
+                                Base.DrawingGroup.DxLibVB.DrawString(100, 100 + i * 100, Scene.Choices(i).Handle)
+                                'DxLibDLL.DX.DrawString(100, 100 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535)
+                                Base.DrawingGroup.DxLibVB.DrawPic(ImageArray(IMAGE_BULLET, 0), 100, 150 + AVGControl * 100)
                             End If
                         Next i
                     Case WordType.Script
                         For i = 0 To Scene.Choices.GetUpperBound(0) Step 1
-                            If Not Scene.Choices(i).Context = Nothing Then
-                                DxLibDLL.DX.DrawString(100, 900 + i * 20, Scene.Choices(i).Context, 16777215)
+                            If Not Scene.Choices(i).Handle = Nothing Then
+                                'DxLibDLL.DX.DrawString(100, 900 + i * 20, Scene.Choices(i).Handle, 16777215)
+                                Base.DrawingGroup.DxLibVB.DrawString(100, 600 + i * 100, Scene.Choices(i).Handle)
                             End If
                         Next i
                     Case WordType.Title
-                        Dim Family As New FontFamily("微软雅黑")
-                        Dim Font As New Font(Family, 14.0)
-                        Dim FontHandle As IntPtr = Font.ToHfont
-                        Dim FontInt As Integer = FontHandle.ToInt32
                         For i = 0 To Scene.Choices.GetUpperBound(0) Step 1
-                            If Not Scene.Choices(i).Context = Nothing Then
-                                'DxLibDLL.DX.DrawStringFToHandle(920, 100 + i * 20, Scene.Choices(i).Context, 1677215, FontInt)
-                                'DxLibDLL.DX.DrawStringFToHandle(920, 100 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535, FontInt)
-                                DxLibDLL.DX.DrawString(920, 100 + i * 20, Scene.Choices(i).Context, 16777215)
-                                DxLibDLL.DX.DrawString(920, 100 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535)
+                            If Not Scene.Choices(i).Handle = Nothing Then
+                                'DxLibDLL.DX.DrawString(920, 100 + i * 20, Scene.Choices(i).Handle, 16777215)
+                                Base.DrawingGroup.DxLibVB.DrawString(800, 100 + i * 100, Scene.Choices(i).Handle)
+                                'DxLibDLL.DX.DrawString(920, 100 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535)
+                                Base.DrawingGroup.DxLibVB.DrawPic(ImageArray(IMAGE_BULLET, 0), 800, 150 + AVGControl * 100)
                             End If
                         Next i
                 End Select
@@ -446,6 +471,8 @@ EndFlag:
                 If Not Scene.BGM = Nothing Then
                     Base.AudioGroup.DxLibVB.PlayBGM(Scene.BGM)
                 End If
+
+                Scene.IsBuilt = True
             End If
         End Sub
     End Class
