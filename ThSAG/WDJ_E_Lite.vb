@@ -47,7 +47,7 @@ Public Class WDJ_E_Lite
                     End If
 
                     DxLibDLL.DX.SetGraphMode(1920, 1080, 32) 'Use this method for basic
-Jump:
+                    DxLibDLL.DX.SetOutApplicationLogValidFlag(0)
                     DxLibDLL.DX.SetWindowText(Title)
                     DxLibDLL.DX.SetDisplayRefreshRate(60)
                     If DxLibDLL.DX.DxLib_Init() = -1 Then
@@ -293,7 +293,7 @@ Jump:
             Dim Size As Long = Microsoft.VisualBasic.FileIO.FileSystem.GetFileInfo(ScriptFullPath).Length     '获取文件大小
             Dim CookedString As String = ""     '定义已处理字符串变量
             Dim WordTmp As String = ""        '定义选择文字临时变量
-            Dim Strings As String = Microsoft.VisualBasic.FileIO.FileSystem.ReadAllText(ScriptFullPath, System.Text.Encoding.Default)     '读取文件
+            Dim Strings As String = Microsoft.VisualBasic.FileIO.FileSystem.ReadAllText(ScriptFullPath, System.Text.Encoding.UTF8)     '读取文件
             Dim Steps As Integer = Strings.Length     '获取字符串长度
             Dim x As Integer = 0, y As Integer = 0      '定义循环控制变量
 
@@ -308,29 +308,29 @@ Jump:
                 Select Case Head
                     Case ScriptHead.NULL
                         Select Case CookedString
-                            Case "开始定义场景"
+                            Case "开始定义场景", "defsc"
                                 Head = ScriptHead.StartSceneDim
-                            Case "结束定义场景"
+                            Case "结束定义场景", "endsc"
                                 Head = ScriptHead.EndSceneDim
-                            Case "背景"
+                            Case "背景", "backg"
                                 Head = ScriptHead.Background
-                            Case "音乐"
+                            Case "音乐", "music"
                                 Head = ScriptHead.BGM
-                            Case "开始定义立绘"
+                            Case "开始定义立绘", "defcg"
                                 Head = ScriptHead.StartCGDim
-                            Case "结束定义立绘"
+                            Case "结束定义立绘", "endcg"
                                 Head = ScriptHead.EndCGDim
-                            Case "立绘地址"
+                            Case "立绘地址", "cgloc"
                                 Head = ScriptHead.CGPath
-                            Case "立绘位置"
+                            Case "立绘位置", "cgpos"
                                 Head = ScriptHead.CGLocation
-                            Case "开始定义文字"
+                            Case "开始定义文字", "defwd"
                                 Head = ScriptHead.StartWordDim
-                            Case "选择"
+                            Case "选择", "cword"
                                 Head = ScriptHead.Choice
-                            Case "跳转"
+                            Case "跳转", "jmpto"
                                 Head = ScriptHead.Jump
-                            Case "结束定义文字"
+                            Case "结束定义文字", "endwd"
                                 Head = ScriptHead.EndWordDim
                         End Select
                     Case ScriptHead.StartSceneDim
@@ -364,17 +364,17 @@ Jump:
                     Case ScriptHead.StartWordDim
                         ChoiceAutoIndexTmp = 0
                         Select Case CookedString
-                            Case "对话" & vbCr
+                            Case "对话" & vbCr, "comm" & vbCr
                                 SceneTmp(SceneIndexTmp).WordType = WordType.Comment
-                            Case "读档" & vbCr
+                            Case "读档" & vbCr, "read" & vbCr
                                 SceneTmp(SceneIndexTmp).WordType = WordType.Loading
-                            Case "存档" & vbCr
+                            Case "存档" & vbCr, "save" & vbCr
                                 SceneTmp(SceneIndexTmp).WordType = WordType.Saving
-                            Case "旁白" & vbCr
+                            Case "旁白" & vbCr, "scpt" & vbCr
                                 SceneTmp(SceneIndexTmp).WordType = WordType.Script
-                            Case "标题" & vbCr
+                            Case "标题" & vbCr, "titl" & vbCr
                                 SceneTmp(SceneIndexTmp).WordType = WordType.Title
-                            Case "启动" & vbCr
+                            Case "启动" & vbCr, "stup" & vbCr
                                 SceneTmp(SceneIndexTmp).WordType = WordType.GameRun
                         End Select
                         Head = ScriptHead.NULL
@@ -420,9 +420,9 @@ EndFlag:
                         For i = 0 To Scene.Choices.GetUpperBound(0) Step 1
                             If Not Scene.Choices(i).Handle = Nothing Then
                                 'DxLibDLL.DX.DrawString(100, 900 + i * 20, Scene.Choices(i).Handle, 16777215)
-                                Base.DrawingGroup.DxLibVB.DrawString(100, 600 + i * 100, Scene.Choices(i).Handle)
+                                Base.DrawingGroup.DxLibVB.DrawString(100, 500 + i * 100, Scene.Choices(i).Handle)
                                 'DxLibDLL.DX.DrawString(100, 900 + AVGControl * 20, Scene.Choices(AVGControl).Context, 65535)
-                                Base.DrawingGroup.DxLibVB.DrawPic(ImageArray(IMAGE_BULLET, 0), 100, 650 + AVGControl * 100)
+                                Base.DrawingGroup.DxLibVB.DrawPic(ImageArray(IMAGE_BULLET, 0), 100, 550 + AVGControl * 100)
                             End If
                         Next i
                     Case WordType.GameRun

@@ -5,8 +5,9 @@ Imports ThSAG.WDJ_E_Lite.Base.ControlGroup
 
 Public Class Main
     Dim AppName As String = "ThSAG VB .NET & DirectX Edition ~ AVG Part"
-    Dim IsSTGEnabled As Boolean = True
+    Dim IsSTGEnabled As Boolean = False
     Dim IsReleaseMode As Boolean = False
+    Dim ReleaseFile As String = "NyaSamaSoulLove"
 
     Dim Bullets(100, 1000) As Objects
     Dim Player1 As Objects
@@ -275,7 +276,7 @@ ExitFlag:
         Dim Path(100) As String
 
         If IsReleaseMode Then
-            Path(0) = Application.StartupPath & "\Script.txt"
+            Path(0) = Application.StartupPath & "\" & ReleaseFile
         Else
 Head:
             OpenScriptLog.Reset()
@@ -1303,4 +1304,5 @@ Head:
             AVGControlSub()
         End If
     End Sub
+
 End Class
